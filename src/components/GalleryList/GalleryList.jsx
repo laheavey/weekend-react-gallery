@@ -1,13 +1,14 @@
 import GalleryItem from "../GalleryItem/GalleryItem";
 
-function GalleryList ({galleryItems}) {
+function GalleryList ({galleryItems, getGallery}) {
     return (
-        <p>
-        {
-        galleryItems && galleryItems.map((picture) => {
-            return (<GalleryItem picture={picture} key={picture.id}/>)
+        <div>
+        {galleryItems && galleryItems.map((picture) => {
+            return (
+                <GalleryItem picture={picture} key={picture.id} getGallery={getGallery}/>
+            )
         })}
-        </p>
+        </div>
     )
 }
 
