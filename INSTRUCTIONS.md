@@ -31,6 +31,7 @@ To practice passing values through `props` in React, you will build the gallery 
 - `GalleryList` - represents the gallery of images. By componentizing, we could reuse this component in different applications
 - `GalleryItem` - represents a single image in the gallery with the ability to click the image to toggle between image and description as well as the ability to like an image.
 
+
 ### Wireframes
 
 > NOTE: Images don't need to be 100px x 100px but it will be easier if the are all the same dimensions.
@@ -40,10 +41,10 @@ To practice passing values through `props` in React, you will build the gallery 
 ![mockup two](wireframes/second-mockup.png)
 
 ### Task List
-- Use `axios` to retrieve (`GET`) data from to `/gallery` and store it in `App.jsx`.
-- Create a new **component** for the `GalleryList` and pass it the gallery data stored in `App` via `props`.
-    - Iterate (loop over) the list of gallery data
-    - Make GalleryItems
+[✅] Use `axios` to retrieve (`GET`) data from to `/gallery` and store it in `App.jsx`.
+[✅] Create a new **component** for the `GalleryList` and pass it the gallery data stored in `App` via `props`.
+    [✅] Iterate (loop over) the list of gallery data
+    [✅] Make GalleryItems
 - Create a new **component** called `GalleryItem.jsx` and pass it the individual gallery item via `props`. 
     - Update the `GalleryList` to use this component to display an image.
     - Swap the image with the description on click. Use [conditional rendering](https://reactjs.org/docs/conditional-rendering.html).
