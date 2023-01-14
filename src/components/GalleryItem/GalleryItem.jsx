@@ -1,6 +1,9 @@
 import axios from "axios";
+import react from "react";
+import { useState } from "react";
 
 function GalleryItem ({picture, getGallery}) {
+    const [isActive, setActive] = useState(true)
 
     const putGallery = ({picture, getGallery}) => {
         axios({
@@ -20,15 +23,27 @@ function GalleryItem ({picture, getGallery}) {
         putGallery({picture, getGallery});
     }
 
+    const toggleClass = () => {
+        setActive(!isActive);
+    }
+
     return (
-        <div>
-        <img src={picture.path}></img>
-        <div>
-            <button onClick={HandleLikes}>Like It!</button>
-        </div>
-        <div>
-            Like Count: {picture.likes}
-        </div>
+        <div onClick={toggleClass}>
+
+            {isActive ?
+            <img src={picture.path}></img>
+            :
+            <>{picture.description}</>
+            }
+            
+            <div>
+                <button onClick={HandleLikes}>Like It!</button>
+            </div>
+
+            <div>
+                Like Count: {picture.likes}
+            </div>
+
         </div>
     )
 }
