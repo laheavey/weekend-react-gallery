@@ -1,3 +1,4 @@
+const pool = require('../modules/pool');
 const express = require('express');
 const router = express.Router();
 const galleryItems = require('../modules/gallery.data');
@@ -18,7 +19,19 @@ router.put('/like/:id', (req, res) => {
 
 // GET Route
 router.get('/', (req, res) => {
-    res.send(galleryItems);
+    // res.send(galleryItems);
+    console.log('In GET /gallery.router.');
+    let sqlQuery = `SELECT * FROM "images";`;
+    pool.query(sqlQuery)
+    .then((response) => {
+        console.log('Response from server in GET: ', response.rows);
+        res.send(response.rows);
+    })
+    .catch((error) => {
+        console.log('Error in GET: ', error);
+        res.sendStatus(500);
+    })
+
 }); // END GET Route
 
 module.exports = router;
