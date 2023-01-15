@@ -2,6 +2,17 @@ import axios from "axios";
 import react from "react";
 import { useState } from "react";
 
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Grid from "@mui/material/Grid";
+import Tooltip from "@mui/material/Tooltip";
+import { IconButton, CardActionArea, CardActions } from '@mui/material';
+import Typography from "@mui/material/Typography";
+
+import TextSnippetSharpIcon from '@mui/icons-material/TextSnippetSharp';
+import FavoriteSharpIcon from '@mui/icons-material/FavoriteSharp';
+
 function GalleryItem ({picture, getGallery}) {
     const [isActive, setActive] = useState(true)
 
@@ -28,23 +39,64 @@ function GalleryItem ({picture, getGallery}) {
     }
 
     return (
-        <div onClick={toggleClass}>
-
-            {isActive ?
-            <img src={picture.path}></img>
+        <>
+            <Grid item xs>
+            {isActive 
+            ?
+            <Card variant="outlined" sx={{ maxWidth: 300, minWidth: 250 }}>
+                <CardActionArea>
+                    <CardMedia
+                    component="img"
+                    height="300"
+                    image={picture.path}
+                    alt={picture.description}>
+                    </CardMedia>
+                </CardActionArea>
+                <CardActions>
+                    <Tooltip title="Love!">
+                        <IconButton onClick={HandleLikes} size="small" color="error">
+                            <FavoriteSharpIcon/>
+                        </IconButton>
+                    </Tooltip>
+                    <Typography variant="body2">
+                        {picture.likes}
+                    </Typography>
+                    <Tooltip title="Info">
+                        <IconButton onClick={toggleClass} size="small" color="primary" sx={{ top: 0, right: '-69%' }}>
+                            <TextSnippetSharpIcon/>
+                        </IconButton>
+                    </Tooltip>
+                </CardActions>
+            </Card>
             :
-            <>{picture.description}</>
+            <Card variant="outlined" sx={{ maxWidth: 300, minWidth: 250}}>
+                <CardActionArea>
+                    <CardContent sx={{ minHeight: 268 }}>
+                        <Typography variant="body1">
+                            {picture.description}
+                        </Typography>
+                    </CardContent>
+                </CardActionArea>
+                <CardActions>
+                    <Tooltip title="Love!">
+                        <IconButton onClick={HandleLikes} size="small" color="error">
+                            <FavoriteSharpIcon/>
+                        </IconButton>
+                    </Tooltip>
+                    <Typography variant="body2">
+                        {picture.likes}
+                    </Typography>
+                    <Tooltip title="Info">
+                        <IconButton onClick={toggleClass} size="small" color="primary" sx={{ top: 0, right: '-69%' }}>
+                            <TextSnippetSharpIcon/>
+                        </IconButton>
+                    </Tooltip>
+                </CardActions>
+            </Card>
             }
-            
-            <div>
-                <button onClick={HandleLikes}>Like It!</button>
-            </div>
-
-            <div>
-                Like Count: {picture.likes}
-            </div>
-
-        </div>
+            </Grid>
+        </>
+        
     )
 }
 

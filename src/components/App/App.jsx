@@ -3,6 +3,7 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import './App.css';
 import GalleryList from '../GalleryList/GalleryList';
+import Divider from '@mui/material/Divider';
 
 function App() {
 
@@ -29,8 +30,10 @@ function App() {
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">Gallery of My Life</h1>
+          <h1 className="App-title">Museum of Modern Mischa</h1>
+          <Divider variant="middle" />
         </header>
+        
         <GalleryList galleryItems={galleryItems} getGallery={getGallery}/>
       </div>
     );
