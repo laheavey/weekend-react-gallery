@@ -29,9 +29,16 @@ function GalleryItem ({picture, getGallery}) {
     }
 
     const HandleLikes = (event) => {
-        console.log(picture.id)
+        console.log(picture)
         event.preventDefault();
+
+        // picture.likes+= 1;
+
         putGallery({picture, getGallery});
+    }
+
+    function addLikes () {
+
     }
 
     const toggleClass = () => {
