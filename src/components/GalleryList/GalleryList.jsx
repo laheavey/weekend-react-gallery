@@ -2,12 +2,13 @@ import GalleryItem from "../GalleryItem/GalleryItem";
 import Grid from "@mui/material/Grid";
 
 function GalleryList ({galleryItems, getGallery}) {
+    // Returns the gallery as a whole.
     return (
         <div>
             <Grid container spacing={3}>
-            {galleryItems && galleryItems.map((picture) => {
+            {galleryItems && galleryItems.map((image) => {
                 return (
-                    <GalleryItem picture={picture} key={picture.id} getGallery={getGallery}/>
+                    <GalleryItem image={image} key={image.id} getGallery={getGallery}/>
                 )
             })}
             

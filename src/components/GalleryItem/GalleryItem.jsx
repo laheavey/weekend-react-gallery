@@ -1,5 +1,4 @@
 import axios from "axios";
-import react from "react";
 import { useState } from "react";
 
 import Card from '@mui/material/Card';
@@ -13,34 +12,36 @@ import Typography from "@mui/material/Typography";
 import TextSnippetSharpIcon from '@mui/icons-material/TextSnippetSharp';
 import FavoriteSharpIcon from '@mui/icons-material/FavoriteSharp';
 
-function GalleryItem ({picture, getGallery}) {
+function GalleryItem ({image, getGallery}) {
+    // Piece of state for toggling image/description.
     const [isActive, setActive] = useState(true)
 
-    const putGallery = ({picture, getGallery}) => {
+    // Piece of state for likes an image has.
+    const [imageLikes, setImageLikes] = useState(image.likes)
+
+    // PUT route for likes. Was not able to get this to work.
+    // Currently returning 'null' for number of likes.
+    const putGallery = ({image, getGallery}) => {
         axios({
             method: 'PUT',
-            url: `/gallery/like/${picture.id}`,
+            url: `/gallery/like/${image.id}`,
         }).then((response) => {
             console.log('Response from PUT /like: ', response.data);
+            setImageLikes(imageLikes + 1);
             getGallery();
         }).catch((error) => {
             console.log('Error in PUT /like: ', error);
         })
     }
 
+    // Meant to handle updating likes in the server. Does not work.
     const HandleLikes = (event) => {
-        console.log(picture)
+        console.log(image)
         event.preventDefault();
-
-        // picture.likes+= 1;
-
-        putGallery({picture, getGallery});
+        putGallery({image, getGallery});
     }
 
-    function addLikes () {
-
-    }
-
+    // Function(?) to toggle image/description.
     const toggleClass = () => {
         setActive(!isActive);
     }
@@ -55,8 +56,8 @@ function GalleryItem ({picture, getGallery}) {
                     <CardMedia
                     component="img"
                     height="300"
-                    image={picture.path}
-                    alt={picture.description}>
+                    image={image.path}
+                    alt={image.description}>
                     </CardMedia>
                 </CardActionArea>
                 <CardActions>
@@ -66,7 +67,7 @@ function GalleryItem ({picture, getGallery}) {
                         </IconButton>
                     </Tooltip>
                     <Typography variant="body2">
-                        {picture.likes}
+                        {image.likes}
                     </Typography>
                     <Tooltip title="Info">
                         <IconButton onClick={toggleClass} size="small" color="primary" sx={{ top: 0, right: '-69%' }}>
@@ -80,7 +81,7 @@ function GalleryItem ({picture, getGallery}) {
                 <CardActionArea>
                     <CardContent sx={{ minHeight: 268 }}>
                         <Typography variant="body1">
-                            {picture.description}
+                            {image.description}
                         </Typography>
                     </CardContent>
                 </CardActionArea>
@@ -91,7 +92,7 @@ function GalleryItem ({picture, getGallery}) {
                         </IconButton>
                     </Tooltip>
                     <Typography variant="body2">
-                        {picture.likes}
+                        {image.likes}
                     </Typography>
                     <Tooltip title="Info">
                         <IconButton onClick={toggleClass} size="small" color="primary" sx={{ top: 0, right: '-69%' }}>
