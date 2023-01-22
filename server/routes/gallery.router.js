@@ -5,13 +5,16 @@ const router = express.Router();
 
 // DO NOT MODIFY THIS FILE FOR BASE MODE
 
-// PUT Route
+// PUT Route --> Like increase wasn't working previously, 
+// looked into SQL query and learned how to add one there. 
 router.put('/like/:id', (req, res) => {
     console.log('In PUT /gallery router.')
+
     let sqlQuery = `UPDATE "images"
-        SET "likes"=$1
-        WHERE "id"=$2;`;
-    let sqlValues = [req.body.likes, req.params.id];
+        SET "likes" = "likes" + 1
+        WHERE "id"=$1;`;
+
+    let sqlValues = [req.params.id];
     pool.query(sqlQuery, sqlValues)
     .then((response) => {
         console.log('Success in PUT!', response);
@@ -27,10 +30,10 @@ router.put('/like/:id', (req, res) => {
 // GET Route
 router.get('/', (req, res) => {
     console.log('In GET /gallery router.');
-    let sqlQuery = `SELECT * FROM "images";`;
+    let sqlQuery = `SELECT * FROM "images" ORDER BY "id";`;
     pool.query(sqlQuery)
     .then((response) => {
-        console.log('Response in GET: ', response.rows);
+        // console.log('Response in GET: ', response.rows);
         res.send(response.rows);
     })
     .catch((error) => {

@@ -16,18 +16,14 @@ function GalleryItem ({image, getGallery}) {
     // Piece of state for toggling image/description.
     const [isActive, setActive] = useState(true)
 
-    // Piece of state for likes an image has.
-    const [imageLikes, setImageLikes] = useState(image.likes)
-
-    // PUT route for likes. Was not able to get this to work.
-    // Currently returning 'null' for number of likes.
+    // PUT route for likes. Moved code to add a like from client-side to
+    // server-side code.
     const putGallery = ({image, getGallery}) => {
         axios({
             method: 'PUT',
             url: `/gallery/like/${image.id}`,
         }).then((response) => {
-            console.log('Response from PUT /like: ', response.data);
-            setImageLikes(imageLikes + 1);
+            console.log('Success in PUT /like!');
             getGallery();
         }).catch((error) => {
             console.log('Error in PUT /like: ', error);

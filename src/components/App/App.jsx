@@ -20,7 +20,7 @@ function App() {
       method: 'GET',
       url: '/gallery'
     }).then((response) => {
-      // console.log('Recieved from GET /gallery: ', response.data);
+      console.log('Recieved from GET /gallery: ', response.data);
       setGalleryItems(response.data);
 
     }).catch((error) => {
