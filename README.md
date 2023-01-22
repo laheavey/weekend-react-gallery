@@ -11,14 +11,14 @@ I began by thinking through only the base goals given and determining what steps
 >
 >**Prerequisites** : PG : Pool : Express 
 >
->**License** : [Open Font License](https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL) : "Zen Dots" Google Font used for displayed numbers & calculations.
+>**License** : [Open Font License](https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL) : "Bungee Shade" Google Font used for header.
 
 
 ## Screen Shots
 
 **Final Product ↴**
 
-![Final Gallery](images/React-Gallery-Screenshot.png)
+![Final Gallery](public/images/React-Gallery-Screenshot.png)
 
 
 ## Usage
